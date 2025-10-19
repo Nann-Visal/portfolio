@@ -151,7 +151,7 @@ const Header = () => {
               </Link>
             ))}
             
-            <div className="border-t border-glass pt-4 mt-4">
+            {/* <div className="border-t border-glass pt-4 mt-4">
               {secondaryItems?.map((item) => (
                 <Link
                   key={item?.path}
@@ -167,7 +167,7 @@ const Header = () => {
                   <span>{item?.name}</span>
                 </Link>
               ))}
-            </div>
+            </div> */}
 
             {/* <div className="border-t border-glass pt-4 mt-4 space-y-3">
               <Button 

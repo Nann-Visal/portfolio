@@ -98,19 +98,20 @@ const UserDashboard = () => {
   useEffect(() => {
     setIsVisible(true);
     const interval = setInterval(() => {
-      setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets?.length);
+      setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [codeSnippets.length]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-canvas">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-accent/5"></div>
-      {/* Floating Code Elements */}
+
+      {/* Floating Code Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)]?.map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute opacity-10"
@@ -135,16 +136,17 @@ const UserDashboard = () => {
           </motion.div>
         ))}
       </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-8 px-4 sm:px-0"
           >
-            {/* Professional Badge */}
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -153,11 +155,11 @@ const UserDashboard = () => {
             >
               <div className="w-2 h-2 bg-trust-builder rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-hierarchy-secondary">
-                Available for Full-Stack Projects
+                Available for Full‑Stack Projects
               </span>
             </motion.div>
 
-            {/* Main Heading */}
+            {/* Heading & Subheading */}
             <div className="space-y-4">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
@@ -165,22 +167,22 @@ const UserDashboard = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-hierarchy-primary leading-tight"
               >
-                Full-Stack
+                Full‑Stack
                 <span className="block text-brand-primary">Developer</span>
               </motion.h1>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
                 className="text-xl text-hierarchy-secondary leading-relaxed max-w-lg"
               >
-                Architecting scalable web solutions with Laravel ecosystem and modern JavaScript frameworks. 
+                Architecting scalable web solutions with Laravel ecosystem and modern JavaScript frameworks.
                 Transforming business requirements into technical excellence.
               </motion.p>
             </div>
 
-            {/* Professional Stats */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -208,18 +210,6 @@ const UserDashboard = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              {/* <Link to="/projects">
-                <Button
-                  variant="default"
-                  size="lg"
-                  iconName="FolderOpen"
-                  iconPosition="left"
-                  className="bg-brand-primary hover:bg-brand-primary/90 text-white shadow-elevation"
-                >
-                  View Projects
-                </Button>
-              </Link> */}
-              
               <Link to="/contact">
                 <Button
                   variant="outline"
@@ -242,7 +232,7 @@ const UserDashboard = () => {
             >
               <div className="flex items-center space-x-2">
                 <Icon name="MapPin" size={16} />
-                <span>Phnom Penh, Cambodia</span>
+                <span>Phnom Penh, Cambodia</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Icon name="Clock" size={16} />
@@ -251,16 +241,15 @@ const UserDashboard = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Interactive Code Display */}
+          {/* Right Content — Code Display & Tech Stack */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative px-4 sm:px-0"
           >
             {/* Code Editor Window */}
-            <div className="glass-card rounded-xl overflow-hidden shadow-glassmorphic">
-              {/* Editor Header */}
+            <div className="glass-card rounded-xl overflow-hidden shadow-glassmorphic w-full">
               <div className="flex items-center justify-between px-4 py-3 border-b border-glass">
                 <div className="flex items-center space-x-2">
                   <div className="flex space-x-1">
@@ -269,25 +258,26 @@ const UserDashboard = () => {
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                   <span className="text-sm font-jetbrains-mono text-hierarchy-secondary ml-4">
-                    {codeSnippets?.[currentCodeIndex]?.language}.{codeSnippets?.[currentCodeIndex]?.language === 'Laravel' ? 'php' : codeSnippets?.[currentCodeIndex]?.language === 'Vue 3' ? 'vue' : 'jsx'}
+                    {codeSnippets[currentCodeIndex].language}.
+                    {codeSnippets[currentCodeIndex].language === 'Laravel' ? 'php'
+                      : codeSnippets[currentCodeIndex].language === 'Vue 3' ? 'vue'
+                      : 'jsx'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Icon name="Code2" size={16} className="text-hierarchy-secondary" />
                 </div>
               </div>
-
-              {/* Code Content */}
-              <div className="p-6 bg-slate-900/50 backdrop-blur-sm min-h-[400px]">
+              <div className="p-4 sm:p-6 bg-slate-900/50 backdrop-blur-sm min-h-[300px] sm:min-h-[400px]">
                 <motion.pre
                   key={currentCodeIndex}
                   initial={{ opacity: 0, filter: "blur(10px)" }}
                   animate={{ opacity: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, filter: "blur(10px)" }}
                   transition={{ duration: 0.5 }}
-                  className={`font-jetbrains-mono text-sm leading-relaxed ${codeSnippets?.[currentCodeIndex]?.color} overflow-hidden`}
+                  className={`font-jetbrains-mono text-sm leading-relaxed ${codeSnippets[currentCodeIndex].color} overflow-hidden`}
                 >
-                  {codeSnippets?.[currentCodeIndex]?.code}
+                  {codeSnippets[currentCodeIndex].code}
                 </motion.pre>
               </div>
             </div>
@@ -297,26 +287,26 @@ const UserDashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="mt-6 grid grid-cols-3 gap-3"
+              className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
             >
-              {techStack?.map((tech, index) => (
+              {techStack.map((tech, index) => (
                 <motion.div
-                  key={tech?.name}
+                  key={tech.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.9 + index * 0.1 }}
                   className="glass-card p-3 rounded-lg hover:shadow-glassmorphic transition-all duration-300 group cursor-pointer"
                 >
                   <div className="flex items-center space-x-2 mb-2">
-                    <Icon name={tech?.icon} size={16} className="text-hierarchy-primary group-hover:text-brand-primary transition-colors" />
-                    <span className="text-sm font-medium text-hierarchy-primary">{tech?.name}</span>
+                    <Icon name={tech.icon} size={16} className="text-hierarchy-primary group-hover:text-brand-primary transition-colors" />
+                    <span className="text-sm font-medium text-hierarchy-primary">{tech.name}</span>
                   </div>
                   <div className="w-full bg-slate-700 rounded-full h-1.5">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={{ width: `${tech?.level}%` }}
+                      animate={{ width: `${tech.level}%` }}
                       transition={{ delay: 1 + index * 0.1, duration: 1 }}
-                      className={`h-1.5 rounded-full ${tech?.color}`}
+                      className={`h-1.5 rounded-full ${tech.color}`}
                     ></motion.div>
                   </div>
                 </motion.div>
@@ -325,6 +315,7 @@ const UserDashboard = () => {
           </motion.div>
         </div>
       </div>
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}

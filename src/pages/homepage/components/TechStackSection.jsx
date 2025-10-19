@@ -201,7 +201,7 @@ const TechStackSection = () => {
                       </p>
 
                       {/* Hover Overlay */}
-                      <motion.div
+                      {/* <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ 
                           opacity: hoveredTech === `${categoryIndex}-${techIndex}` ? 1 : 0,
@@ -214,7 +214,7 @@ const TechStackSection = () => {
                           <Icon name="Eye" size={24} className="text-brand-primary mx-auto mb-2" />
                           <p className="text-sm font-medium text-brand-primary">View Projects</p>
                         </div>
-                      </motion.div>
+                      </motion.div> */}
                     </div>
                   </motion.div>
                 ))}

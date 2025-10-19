@@ -8,31 +8,31 @@ const TimelineSection = () => {
     {
       id: 1,
       year: "2024",
-      title: "Senior Full-Stack Developer",
+      title: "Senior Full‑Stack Developer",
       company: "Freelance & Corporate",
       type: "career",
       description: "Leading complex web application development projects with focus on Laravel ecosystem and modern JavaScript frameworks. Specializing in system architecture and stakeholder communication.",
       achievements: [
-        "Architected 5+ enterprise-level web applications",
+        "Architected 5+ enterprise‑level web applications",
         "Implemented advanced Laravel patterns with Spatie packages",
         "Delivered Vue3 + Composition API solutions",
         "Managed full project lifecycle from requirements to deployment"
       ],
-      technologies: ["Laravel", "Vue3", "Database", "Linux",  "Docker"],
+      technologies: ["Laravel", "Vue3", "Database", "Linux", "Docker"],
       icon: "Briefcase",
       color: "blue"
     },
     {
       id: 2,
       year: "2023",
-      title: "Full-Stack Developer",
+      title: "Full‑Stack Developer",
       company: "Corporate & Freelance",
       type: "career",
       description: "Expanded expertise in modern web technologies while maintaining strong foundation in PHP/Laravel development. Focus on creating maintainable, scalable solutions.",
       achievements: [
         "Built comprehensive school management system",
         "Developed custom CMS with advanced features",
-        "Created farm management system with",
+        "Created farm management system",
         "Established best practices for code quality"
       ],
       technologies: ["Laravel", "Vue.js", "MySQL", "Redis", "Git"],
@@ -60,9 +60,9 @@ const TimelineSection = () => {
       id: 4,
       year: "2021",
       title: "IT Engineering Graduate",
-      company: "Royal University of Phnom Penh (RUPP)",
+      company: "Royal University of Phnom Penh (RUPP)",
       type: "education",
-      description: "Completed Bachelor\'s degree in Information Technology Engineering with focus on software development and system analysis.",
+      description: "Completed Bachelor’s degree in Information Technology Engineering with focus on software development and system analysis.",
       achievements: [
         "Graduated with honors in IT Engineering",
         "Specialized in software development methodologies",
@@ -75,7 +75,7 @@ const TimelineSection = () => {
     },
     {
       id: 5,
-      year: "2020-2021",
+      year: "2020‑2021",
       title: "Starter Point",
       company: "Learning & Development",
       type: "career",
@@ -84,7 +84,7 @@ const TimelineSection = () => {
         "Built first commercial web applications",
         "Learned version control and collaboration",
         "Established coding standards and practices",
-        "Developed problem-solving methodologies"
+        "Developed problem‑solving methodologies"
       ],
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "OOP"],
       icon: "Rocket",
@@ -125,7 +125,7 @@ const TimelineSection = () => {
         accent: 'text-cyan-600'
       }
     };
-    return colors?.[color] || colors?.blue;
+    return colors[color] || colors.blue;
   };
 
   return (
@@ -141,85 +141,89 @@ const TimelineSection = () => {
               Professional Timeline
             </span>
           </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Career Journey & Milestones
+
+          <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            Career Journey & Milestones
           </h2>
-          
+
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            A chronological overview of professional growth, educational achievements, 
-            and key milestones that shaped expertise in full-stack development.
+            A chronological overview of professional growth, educational achievements, and key milestones that shaped expertise in full‑stack development.
           </p>
         </div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
+          {/* Timeline Line – on mobile left aligned, on bigger screens centered */}
           <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-slate-200"></div>
 
           {/* Timeline Items */}
           <div className="space-y-12">
-            {timelineData?.map((item, index) => {
+            {timelineData.map((item, index) => {
               const isActive = activeItem === index;
-              const colorClasses = getColorClasses(item?.color, isActive);
+              const colorClasses = getColorClasses(item.color, isActive);
               const isLeft = index % 2 === 0;
 
               return (
                 <div
-                  key={item?.id}
-                  className={`relative flex items-center ${
+                  key={item.id}
+                  className={`relative flex flex-col md:flex-row items-center ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   } cursor-pointer group`}
                   onClick={() => setActiveItem(index)}
                 >
                   {/* Timeline Node */}
                   <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-10">
-                    <div className={`w-16 h-16 rounded-full ${colorClasses?.bg} ${colorClasses?.text} flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110`}>
-                      <Icon name={item?.icon} size={24} strokeWidth={2} />
+                    <div className={`w-16 h-16 rounded-full ${colorClasses.bg} ${colorClasses.text} flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110`}>
+                      <Icon name={item.icon} size={24} strokeWidth={2} />
                     </div>
                   </div>
+
                   {/* Content Card */}
-                  <div className={`w-full md:w-5/12 ml-24 md:ml-0 ${
+                  <div className={`w-full md:w-5/12 mt-10 md:mt-0 px-4 ${
                     isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
                   }`}>
-                    <div className={`glass-card p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl ${
+                    <div className={`glass-card p-6 rounded-xl shadow-lg transition-all duration-300 ${
                       isActive ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
                     }`}>
                       {/* Header */}
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <div className="flex items-center space-x-2 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${colorClasses?.bg} ${colorClasses?.text}`}>
-                              {item?.year}
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${colorClasses.bg} ${colorClasses.text}`}>
+                              {item.year}
                             </span>
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                              item?.type === 'education' ? 'bg-purple-100 text-purple-600' : 'bg-slate-100 text-slate-600'
+                              item.type === 'education'
+                                ? 'bg-purple-100 text-purple-600'
+                                : 'bg-slate-100 text-slate-600'
                             }`}>
-                              {item?.type === 'education' ? 'Education' : 'Career'}
+                              {item.type === 'education' ? 'Education' : 'Career'}
                             </span>
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 mb-1">
-                            {item?.title}
+                            {item.title}
                           </h3>
-                          <p className={`font-medium ${colorClasses?.accent}`}>
-                            {item?.company}
+                          <p className={`font-medium ${colorClasses.accent}`}>
+                            {item.company}
                           </p>
                         </div>
                       </div>
 
                       {/* Description */}
                       <p className="text-slate-600 mb-4 leading-relaxed">
-                        {item?.description}
+                        {item.description}
                       </p>
 
                       {/* Achievements */}
                       <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-slate-900 mb-2">Key Achievements:</h4>
+                        <h4 className="text-sm font-semibold text-slate-900 mb-2">
+                          Key Achievements:
+                        </h4>
                         <ul className="space-y-1">
-                          {item?.achievements?.map((achievement, idx) => (
+                          {item.achievements.map((ach, idx) => (
                             <li key={idx} className="flex items-start space-x-2 text-sm text-slate-600">
                               <Icon name="CheckCircle" size={16} color="#10B981" strokeWidth={2} className="mt-0.5 flex-shrink-0" />
-                              <span>{achievement}</span>
+                              <span>{ach}</span>
                             </li>
                           ))}
                         </ul>
@@ -227,9 +231,11 @@ const TimelineSection = () => {
 
                       {/* Technologies */}
                       <div>
-                        <h4 className="text-sm font-semibold text-slate-900 mb-2">Technologies:</h4>
+                        <h4 className="text-sm font-semibold text-slate-900 mb-2">
+                          Technologies:
+                        </h4>
                         <div className="flex flex-wrap gap-2">
-                          {item?.technologies?.map((tech, idx) => (
+                          {item.technologies.map((tech, idx) => (
                             <span
                               key={idx}
                               className="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium"
@@ -249,12 +255,12 @@ const TimelineSection = () => {
 
         {/* Navigation Dots */}
         <div className="flex justify-center space-x-2 mt-12">
-          {timelineData?.map((_, index) => (
+          {timelineData.map((_, idx) => (
             <button
-              key={index}
-              onClick={() => setActiveItem(index)}
+              key={idx}
+              onClick={() => setActiveItem(idx)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeItem === index ? 'bg-blue-600' : 'bg-slate-300 hover:bg-slate-400'
+                activeItem === idx ? 'bg-blue-600' : 'bg-slate-300 hover:bg-slate-400'
               }`}
             />
           ))}
