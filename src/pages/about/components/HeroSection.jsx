@@ -91,7 +91,7 @@ const HeroSection = () => {
               {/* Main Image Container */}
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-slate-700 shadow-2xl">
                 <Image
-                  src="build/assets/images/photo_2025-09-16_23-24-22.jpg"
+                  src="assets/images/photo_2025-09-16_23-24-22.jpg"
                   alt="VisalNann - Full Stack Developer"
                   className="w-full h-full object-cover"
                 />
