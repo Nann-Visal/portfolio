@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tagger from "@dhiwise/component-tagger";
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,7 +12,19 @@ export default defineConfig({
     outDir: "build",
     chunkSizeWarningLimit: 2000,
   },
-  plugins: [tsconfigPaths(), react(), tagger()],
+  plugins: [
+    tsconfigPaths(), 
+    react(), 
+    tagger(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/images/*',
+          dest: 'assets/images'
+        }
+      ]
+    })
+  ],
   server: {
     port: "4028",
     host: "0.0.0.0",
