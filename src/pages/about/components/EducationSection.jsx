@@ -145,102 +145,96 @@ const EducationSection = () => {
               Education & Learning
             </span>
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Educational Foundation
           </h2>
-          
+
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Academic background, professional certifications, and continuous learning 
+            Academic background, professional certifications, and continuous learning
             journey that forms the foundation of technical expertise and professional growth.
           </p>
         </div>
 
-        {/* Formal Education */}
+        {/* ✅ Formal Education (Responsive Grid) */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Formal Education</h3>
-          
-          {educationData?.map((education) => {
-            const colorClasses = getColorClasses(education?.color);
-            
-            return (
-              <div key={education?.id} className="glass-card p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
-                <div className="flex items-start space-x-6">
-                  <div className={`w-16 h-16 ${colorClasses?.light} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                    <Icon name={education?.icon} size={32} color={colorClasses?.text?.replace('text-', '#')} strokeWidth={2} />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div>
-                        <h4 className="text-xl font-bold text-slate-900 mb-2">
-                          {education?.degree}
-                        </h4>
-                        <p className={`font-semibold ${colorClasses?.text} mb-1`}>
-                          {education?.institution}
-                        </p>
-                        <p className="text-slate-600">{education?.period}</p>
-                      </div>
-                      <div className="mt-4 md:mt-0">
-                        <span className={`px-4 py-2 ${colorClasses?.light} ${colorClasses?.text} rounded-full text-sm font-medium`}>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {educationData?.map((education) => {
+              const colorClasses = getColorClasses(education?.color);
+
+              return (
+                <div key={education?.id} className="glass-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className={`w-12 h-12 ${colorClasses?.light} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                      <Icon name={education?.icon} size={24} color={colorClasses?.text?.replace('text-', '#')} strokeWidth={2} />
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between mb-2">
+                        <h4 className="font-bold text-slate-900">{education?.degree}</h4>
+                        <span className={`px-2 py-1 ${colorClasses?.light} ${colorClasses?.text} rounded text-xs font-medium`}>
                           {education?.status}
                         </span>
                       </div>
+                      <p className={`${colorClasses?.text} font-medium mb-1`}>{education?.institution}</p>
+                      <p className="text-slate-500 text-sm">{education?.period}</p>
                     </div>
-                    
-                    <p className="text-slate-700 mb-6 leading-relaxed">
-                      {education?.description}
-                    </p>
-                    
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h5 className="font-semibold text-slate-900 mb-3">Key Achievements:</h5>
-                        <ul className="space-y-2">
-                          {education?.achievements?.map((achievement, index) => (
-                            <li key={index} className="flex items-start space-x-2">
-                              <Icon name="CheckCircle" size={16} color="#10B981" strokeWidth={2} className="mt-0.5 flex-shrink-0" />
-                              <span className="text-slate-600 text-sm">{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h5 className="font-semibold text-slate-900 mb-3">Core Coursework:</h5>
-                        <div className="flex flex-wrap gap-2">
-                          {education?.coursework?.map((course, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-sm"
-                            >
-                              {course}
-                            </span>
-                          ))}
-                        </div>
+                  </div>
+
+                  <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                    {education?.description}
+                  </p>
+
+                  <div className="grid gap-4">
+                    <div>
+                      <h5 className="font-semibold text-slate-900 mb-2 text-sm">Key Achievements:</h5>
+                      <ul className="space-y-1">
+                        {education?.achievements?.map((achievement, index) => (
+                          <li key={index} className="flex items-start space-x-2 text-sm text-slate-600">
+                            <Icon name="CheckCircle" size={16} color="#10B981" strokeWidth={2} className="mt-0.5 flex-shrink-0" />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h5 className="font-semibold text-slate-900 mb-2 text-sm">Core Coursework:</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {education?.coursework?.map((course, index) => (
+                          <span
+                            key={index}
+                            className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs"
+                          >
+                            {course}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Professional Certifications */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Professional Certifications</h3>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {certifications?.map((cert) => {
               const colorClasses = getColorClasses(cert?.color);
-              
+
               return (
                 <div key={cert?.id} className="glass-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4 mb-4">
                     <div className={`w-12 h-12 ${colorClasses?.light} rounded-lg flex items-center justify-center flex-shrink-0`}>
                       <Icon name={cert?.icon} size={24} color={colorClasses?.text?.replace('text-', '#')} strokeWidth={2} />
                     </div>
-                    
+
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-bold text-slate-900">{cert?.name}</h4>
@@ -274,50 +268,19 @@ const EducationSection = () => {
         {/* Continuous Learning */}
         <div>
           <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Continuous Learning</h3>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {continuousLearning?.map((platform, index) => (
               <div key={index} className="glass-card p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300">
                 <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Icon name={platform?.icon} size={24} color="#64748B" strokeWidth={2} />
                 </div>
-                
+
                 <h4 className="font-bold text-slate-900 mb-2">{platform?.platform}</h4>
                 <p className="text-slate-600 text-sm mb-4">{platform?.focus}</p>
-                
-                <div className="space-y-2 hidden">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-500">Courses:</span>
-                    <span className="font-medium text-slate-900">{platform?.courses}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-500">Hours:</span>
-                    <span className="font-medium text-slate-900">{platform?.hours}+</span>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
-          
-          {/* Learning Stats */}
-          {/* <div className="mt-12 text-center">
-            <div className="inline-flex items-center space-x-8 bg-white p-6 rounded-xl shadow-lg">
-              <div>
-                <div className="text-2xl font-bold text-slate-900">60+</div>
-                <div className="text-sm text-slate-600">Courses Completed</div>
-              </div>
-              <div className="w-px h-12 bg-slate-200"></div>
-              <div>
-                <div className="text-2xl font-bold text-slate-900">550+</div>
-                <div className="text-sm text-slate-600">Learning Hours</div>
-              </div>
-              <div className="w-px h-12 bg-slate-200"></div>
-              <div>
-                <div className="text-2xl font-bold text-slate-900">4</div>
-                <div className="text-sm text-slate-600">Certifications</div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

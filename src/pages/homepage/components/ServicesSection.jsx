@@ -189,7 +189,7 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Service Details */}
-                <div className="border-t border-border pt-4 space-y-2">
+                {/* <div className="border-t border-border pt-4 space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-muted-foreground">Starting at</span>
                     <span className="text-sm font-semibold text-conversion-accent">{service?.pricing}</span>
@@ -198,7 +198,7 @@ const ServicesSection = () => {
                     <span className="text-sm text-muted-foreground">Timeline</span>
                     <span className="text-sm font-semibold text-foreground">{service?.timeline}</span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Hover Effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
